@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+  labels:
+    app: flask-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: flask-app
+  template:
+    metadata:
+      labels:
+        app: flask-app
+    spec:
+      volumes:
+        - name: aws-credentials
+          hostPath:
+            path: /root/.aws
+            type: Directory
+      containers:
+      - name: flask-app
+        image: bough/fil-rouge
+        # doit être spécifier pour que le scaling horizontal puisse fonctionner
+        resources:
+          requests:
+            memory: "32Mi"
+            cpu:  "200m"
+          limits:
+            memory: "64Mi"
+            cpu:  "250m"
+        volumeMounts:
+          - name: aws-credentials
+            mountPath: /root/.aws
+        env:
+        - name: AWS_PROFILE
+          value: csloginstudent
+        command: [ "/bin/bash", "-ce", "gunicorn -w 1 -b 0.0.0.0:8000 wsgi:app" ]
+        ports:
+        - containerPort: 8000
+      #utiliser pour récupérer l'image de l'app à partir de mon registry privé dans docker hub
+      imagePullSecrets:
+      - name: regcred

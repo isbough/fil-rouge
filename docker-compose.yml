@@ -1,0 +1,46 @@
+version: '2'
+
+services:
+  #Instance 1 de l'app
+  flask_app:
+    container_name: flask_app
+    restart: always
+    build: ./fil_rouge
+    ports:
+      - "8000:8000"
+    environment:
+      - AWS_PROFILE=csloginstudent
+    volumes:
+      - ~/.aws/:/root/.aws:ro
+    command: gunicorn -w 1 -b 0.0.0.0:8000 wsgi:app
+  #Instance 2 de l'app
+  flask_app1:
+    container_name: flask_app1
+    restart: always
+    build: ./fil_rouge
+    ports:
+      - "8001:8001"
+    environment:
+      - AWS_PROFILE=csloginstudent
+    volumes:
+      - ~/.aws/:/root/.aws:ro
+    command: gunicorn -w 1 -b 0.0.0.0:8001 wsgi:app
+  nginx:
+    container_name: nginx
+    restart: always
+    image: nginx:latest
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    ports:
+      - "80:80"
+      - "443:443"
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    

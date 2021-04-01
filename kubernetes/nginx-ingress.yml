@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: filrouge-ingress
+spec:
+  rules:
+  # acheminer le trafic pour 
+  - host: filrouge.isbou.p2021.ajoga.fr
+  - http:
+      paths:
+      - path: /upload
+        pathType: Prefix
+        backend:
+          service: 
+            name: flask-app
+            port:
+             number: 8000
