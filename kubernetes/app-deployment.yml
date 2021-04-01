@@ -21,6 +21,7 @@ spec:
             type: Directory
       containers:
       - name: flask-app
+        # registre privée sur docker hub
         image: bough/fil-rouge
         # doit être spécifier pour que le scaling horizontal puisse fonctionner
         resources:
