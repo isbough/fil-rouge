@@ -3,7 +3,7 @@
 # Architecture :
 ![architecture](https://user-images.githubusercontent.com/28030944/113333877-4672d000-9323-11eb-922c-1d4aa1e27b75.png)
 
-# Decriptif du projet:
+# Descriptif du projet:
 
 le projet consiste en la mise en place d'une API qui permet à un utilisateur d'uploader un fichier et de recevoir en retour en JSON contenant les données et les métadonnées du fichier. L'api accepte les images (png,jpeg,jpg,gif),txt,csv,mp4,pdf et docx. Pour les autres types de fichiers un message est retourné à l'utilisateur pour l'informer que le type du fichier n'est pas pris en compte.
 
