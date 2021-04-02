@@ -3,7 +3,19 @@
 # Architecture :
 ![architecture](https://user-images.githubusercontent.com/28030944/113333877-4672d000-9323-11eb-922c-1d4aa1e27b75.png)
 
-# Descriptif :
+# Decriptif du projet:
+
+le projet consiste en la mise en place d'une API qui permet à un utilisateur d'uploader un fichier et de recevoir en retour en JSON contenant les données et les métadonnées du fichier. L'api accepte les images (png,jpeg,jpg,gif),txt,csv,mp4,pdf et docx. Pour les autres types de fichiers un message est retourné à l'utilisateur pour l'informer que le type du fichier n'est pas pris en compte.
+
+# Utilisation de l'API:
+
+L'API possède un seul End point qui est /upload.
+
+L'API est accessible avec un curl : curl -F "file=@/path/to/nom_fichier.extension" "https://filrouge.isbou.p2021.ajoga.fr/upload"
+
+filrouge.isbou.p2021.ajoga.fr nom domaine associé à l'@IP de l'instance EC2.
+
+# Descriptif - Partie Conteneurisation :
 
 - le fichier Dockerfile qui permet d'empaqueter l'application se trouve au niveau du dossier fil_rouge
 - docker-compose.yml : composé de deux services de l'api (j'ai préféré procéder ainsi au lieu de définir un seul service et faire un `docker compose scale` par la suite, pour avoir les deux instances de l'api toujours disponibles). D'un service nginx qui joue le role de load balancer et d'un service certbot qui automatise la partie SSL/TLS.
