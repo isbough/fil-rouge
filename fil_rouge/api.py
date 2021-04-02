@@ -338,7 +338,7 @@ def detect_labels_image(photo):
         labels[label["Name"]] = label["Confidence"]
     return labels
 
-
+#TRANSCRIBE
 def transcribe_audio_file(object_key):
     job_name = "JOB_name"
     job_uri = "https://s3.amazonaws.com/" + BUCKET_NAME + "/" + object_key
@@ -367,7 +367,7 @@ def transcribe_audio_file(object_key):
         transcribe.delete_transcription_job(TranscriptionJobName=job_name)
     return text
 
-
+#COMPREHEND
 def comprehend_text(text):
     new_sentiment_analysis = {}
     comprehend = boto3.client("comprehend")
