@@ -11,7 +11,8 @@ le projet consiste en la mise en place d'une API qui permet à un utilisateur d'
 
 L'API possède un seul End point qui est /upload.
 
-L'API est accessible avec un curl : curl -F "file=@/path/to/nom_fichier.extension" "https://filrouge.isbou.p2021.ajoga.fr/upload"
+L'API est accessible avec un curl :
+curl -F "file=@/path/to/nom_fichier.extension" "https://filrouge.isbou.p2021.ajoga.fr/upload"
 
 filrouge.isbou.p2021.ajoga.fr nom domaine associé à l'@IP de l'instance EC2.
 
