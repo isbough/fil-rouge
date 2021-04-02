@@ -31,7 +31,12 @@ Déploiement des 3 pods :
 <img width="617" alt="Capture d’écran 2021-04-01 à 21 22 30" src="https://user-images.githubusercontent.com/28030944/113343652-68268400-9330-11eb-98f3-89212a1125f6.png">
 
 - nginx-ingress.yml : NGINX Ingress Controller qui permet l'accès à l'api depuis internet avec un nom de domaine
+
 <img width="118" alt="Capture d’écran 2021-04-01 à 21 27 28" src="https://user-images.githubusercontent.com/28030944/113344254-1f22ff80-9331-11eb-94b1-a3a9ef58eeed.png">
+
+Installation de l'Ingress NGINX : `kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/kind/deploy.yaml`
+
+<img width="760" alt="Capture d’écran 2021-04-02 à 03 27 39" src="https://user-images.githubusercontent.com/28030944/113370172-7a6de580-9363-11eb-9b74-3cd453feb2ef.png">
 
 <img width="933" alt="Capture d’écran 2021-04-01 à 21 32 32" src="https://user-images.githubusercontent.com/28030944/113344794-d750a800-9331-11eb-991a-8f74f6c4db4a.png">
 
