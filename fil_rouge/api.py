@@ -9,6 +9,7 @@ import json
 import urllib
 import base64
 from flask import Flask, request, jsonify, make_response
+from flask_swagger_ui import get_swaggerui_blueprint
 from constants import (
     PATH_TO_UPLOADED_FILES_FOLDER,
     ALLOWED_EXTENSIONS,
@@ -29,16 +30,23 @@ from docx import Document
 from mutagen.mp3 import MP3
 from mutagen.mp4 import MP4
 
-# swagger_destination_path = './swagger.json'
-
-# # Create the bluepints
-# blueprint = Blueprint('objects', __name__)
 
 app = Flask(__name__)
 app.config.from_pyfile("config.py")
 
-# # Create swagger version 3.0 generator
-# generator = Generator.of(SwaggerVersion.VERSION_THREE)
+### swagger specific ###
+SWAGGER_URL = '/swagger'
+API_URL = '/static/swagger.json'
+SWAGGERUI_BLUEPRINT = get_swaggerui_blueprint(
+    SWAGGER_URL,
+    API_URL,
+    config={
+        'app_name': "Seans-Python-Flask-REST-Boilerplate"
+    }
+)
+app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
+### end swagger specific ###
+
 
 s3 = boto3.resource("s3")
 bucket = s3.Bucket(BUCKET_NAME)
@@ -52,7 +60,6 @@ def not_found(error):
 @app.errorhandler(500)
 def not_found(error):
     return make_response(jsonify({"error": "Internal Server Error"}), 500)
-
 
 @app.route("/upload", methods=["POST"])
 def upload_file():
