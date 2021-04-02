@@ -301,7 +301,7 @@ def generate_txt_metadata(file, object_key):
     txt_metadata["number_of_words"] = len(words_count)
     return txt_metadata,data
 
-
+#UPLOAD TO S3
 def upload_file_to_s3(request,file,object_name=None):
     if object_name is None:
         object_name = file.filename
@@ -316,7 +316,7 @@ def upload_file_to_s3(request,file,object_name=None):
         return False
     return True
 
-
+#REKOGNITION
 def detect_labels_image(photo):
     labels = {}
     bounding_box = {}
