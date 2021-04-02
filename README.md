@@ -16,6 +16,8 @@ curl -F "file=@/path/to/nom_fichier.extension" "https://filrouge.isbou.p2021.ajo
 
 filrouge.isbou.p2021.ajoga.fr nom domaine associé à l'@IP de l'instance EC2.
 
+Des fichiers de tests sont disponibles dans le dossier test.
+
 # Descriptif - Partie Conteneurisation :
 
 - le fichier Dockerfile qui permet d'empaqueter l'application se trouve au niveau du dossier fil_rouge
