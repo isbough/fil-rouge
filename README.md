@@ -19,7 +19,8 @@ Pour faire les tests en local, j'ai déployé un cluster kubernetes en utilisant
 
 - app-deployment.yml : Resource Deployment qui permet de déployer 3 réplicas de l'api
 
-Pour définir les credentials AWS dans les 3 pods, j'ai fait un montage de volume:
+Pour définir les credentials AWS dans les 3 pods, j'ai fait un montage de volume ( Ce n'est pas la meilleure manière de procéder, j'ai pensé à créer une ressource Secret et à définir les crendetials qui seront injéctées dans les pods lors de déploiement, mais on a une structure du fichier credentials qui est spéciale, deux profiles sont définies dans le fichier crédentials, un profile enseignant et un autre étudiant et le profile étudiant dépend de celui de l'enseignant)
+
 Dans un premier temps j'ai crée le fichier credentials dans /root/.aws/credentials dans le noeud(conteneur) `kind-control-plane` du cluster kubernetes:
 <img width="633" alt="Capture d’écran 2021-04-01 à 21 13 45" src="https://user-images.githubusercontent.com/28030944/113342859-4d9fdb00-932f-11eb-99c7-47f0d5da7567.png">
 
