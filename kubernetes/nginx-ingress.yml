@@ -4,7 +4,7 @@ metadata:
   name: filrouge-ingress
 spec:
   rules:
-  # acheminer le trafic pour filrouge.isbou.p2021.ajoga.fr au service flask-app qui permet l'accès à l'api
+  # acheminer le trafic pour filrouge.isbou.p2021.ajoga.fr (nom de domaine instance EC2) au service flask-app qui permet l'accès à l'api
   - host: filrouge.isbou.p2021.ajoga.fr
   - http:
       paths:
